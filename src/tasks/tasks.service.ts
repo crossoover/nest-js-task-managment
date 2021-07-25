@@ -20,8 +20,15 @@ export class TasksService {
   }
 
   updateTaskById(id: string, updateTaskDto: UpdateTaskDto): Task {
-    const index: number = this.tasks.findIndex((item) => item.id === id);
-    return (this.tasks[index] = { id, ...updateTaskDto });
+    let task = this.getTaskById(id);
+    task = { id, ...updateTaskDto };
+    return task;
+  }
+
+  updateTaskStatusById(id: string, status: TasksStatus): Task {
+    const task = this.getTaskById(id);
+    task.status = status;
+    return task;
   }
 
   createTask(createTaskDto: CreateTaskDto): Task {
