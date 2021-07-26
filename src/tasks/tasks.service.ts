@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Task, TasksStatus } from './task.model';
 import { v4 as uuid } from 'uuid';
-import { CreateTaskDto, UpdateTaskDto } from './dto/create-task.dto';
+import { CreateTaskDto } from './dto/create-task.dto';
 import { NotFoundException } from '@nestjs/common';
+import { UpdateTaskDto } from './dto/update-task.dto';
+import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
 
 @Injectable()
 export class TasksService {
@@ -56,9 +58,12 @@ export class TasksService {
     return task;
   }
 
-  updateTaskStatusById(id: string, status: TasksStatus): Task {
+  updateTaskStatusById(
+    id: string,
+    updateTaskStatusDto: UpdateTaskStatusDto,
+  ): Task {
     const task = this.getTaskById(id);
-    task.status = status;
+    task.status = updateTaskStatusDto.status;
     return task;
   }
 
