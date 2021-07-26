@@ -42,8 +42,10 @@ export class TasksService {
 
   updateTaskById(id: string, updateTaskDto: UpdateTaskDto): Task {
     const { title, description, status } = updateTaskDto;
-    let task = this.getTaskById(id);
-    task = { id, title, description, status };
+    const task = this.getTaskById(id);
+    task.title = title;
+    task.description = description;
+    task.status = status;
     return task;
   }
 
