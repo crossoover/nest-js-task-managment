@@ -42,11 +42,11 @@ export class TasksController {
     return this.tasksService.updateTaskStatus(id, updateTaskStatusDto.status);
   }
 
-  // @Put('/:id')
-  // updateTaskById(
-  //   @Param('id') id: string,
-  //   @Body() updateTaskDto: UpdateTaskDto,
-  // ): Task {
-  //   return this.tasksService.updateTaskById(id, updateTaskDto);
-  // }
+  @Put('/:id')
+  updateTask(
+    @Param('id') id: string,
+    @Body() updateTaskDto: UpdateTaskDto,
+  ): Promise<Task> {
+    return this.tasksService.updateTask(id, updateTaskDto);
+  }
 }
