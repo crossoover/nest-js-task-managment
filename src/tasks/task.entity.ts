@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/auth/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { TasksStatus } from './task-status.enum';
 
 @Entity()
@@ -15,4 +16,7 @@ export class Task {
 
   @Column()
   status: TasksStatus;
+
+  @ManyToOne(_type => User, user => user.tasks, { eager: false })
+  user: User;
 }
