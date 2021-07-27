@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { TasksStatus } from './task-status.enum';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -20,8 +21,9 @@ export class TasksService {
     return this.tasksRepository.getTasks(filterDto, user);
   }
 
-  async getTaskById(id: string): Promise<Task> {
-    const found = await this.tasksRepository.findOne(id);
+  async getTaskById(id: string, user: User): Promise<Task> {
+    const found = await this.tasksRepository.findOne({ where: { id, user } });
+
     if (!found) {
       throw new NotFoundException(`Task with id "${id}" does not exist.`);
     }
@@ -39,25 +41,25 @@ export class TasksService {
     }
   }
 
-  async updateTaskStatus(id: string, status: TasksStatus): Promise<Task> {
-    const task = await this.getTaskById(id);
+  // async updateTaskStatus(id: string, status: TasksStatus): Promise<Task> {
+  //   const task = await this.getTaskById(id);
 
-    task.status = status;
-    await this.tasksRepository.save(task);
+  //   task.status = status;
+  //   await this.tasksRepository.save(task);
 
-    return task;
-  }
+  //   return task;
+  // }
 
-  async updateTask(id: string, updateTaskDto: UpdateTaskDto): Promise<Task> {
-    const { title, description, status } = updateTaskDto;
-    const task = await this.getTaskById(id);
+  // async updateTask(id: string, updateTaskDto: UpdateTaskDto): Promise<Task> {
+  //   const { title, description, status } = updateTaskDto;
+  //   const task = await this.getTaskById(id);
 
-    task.description = description;
-    task.title = title;
-    task.status = status;
+  //   task.description = description;
+  //   task.title = title;
+  //   task.status = status;
 
-    await this.tasksRepository.save(task);
+  //   await this.tasksRepository.save(task);
 
-    return task;
-  }
+  //   return task;
+  // }
 }
