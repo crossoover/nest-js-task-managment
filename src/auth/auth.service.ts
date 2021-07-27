@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
