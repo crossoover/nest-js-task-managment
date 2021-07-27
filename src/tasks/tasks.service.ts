@@ -41,25 +41,25 @@ export class TasksService {
     }
   }
 
-  // async updateTaskStatus(id: string, status: TasksStatus): Promise<Task> {
-  //   const task = await this.getTaskById(id);
+  async updateTaskStatus(id: string, status: TasksStatus, user: User): Promise<Task> {
+    const task = await this.getTaskById(id, user);
 
-  //   task.status = status;
-  //   await this.tasksRepository.save(task);
+    task.status = status;
+    await this.tasksRepository.save(task);
 
-  //   return task;
-  // }
+    return task;
+  }
 
-  // async updateTask(id: string, updateTaskDto: UpdateTaskDto): Promise<Task> {
-  //   const { title, description, status } = updateTaskDto;
-  //   const task = await this.getTaskById(id);
+  async updateTask(id: string, updateTaskDto: UpdateTaskDto, user: User): Promise<Task> {
+    const { title, description, status } = updateTaskDto;
+    const task = await this.getTaskById(id, user);
 
-  //   task.description = description;
-  //   task.title = title;
-  //   task.status = status;
+    task.description = description;
+    task.title = title;
+    task.status = status;
 
-  //   await this.tasksRepository.save(task);
+    await this.tasksRepository.save(task);
 
-  //   return task;
-  // }
+    return task;
+  }
 }
