@@ -1,4 +1,4 @@
-import { AuthCredentialsDto } from './dto/auth-credentials.sto';
+import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersRepository } from './users.repository';
