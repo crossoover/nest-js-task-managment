@@ -60,12 +60,13 @@ export class TasksService {
     updateTaskDto: UpdateTaskDto,
     user: User,
   ): Promise<Task> {
-    const { title, description, status } = updateTaskDto;
+    const { title, description, status, categoryId } = updateTaskDto;
     const task = await this.getTaskById(id, user);
 
     task.description = description;
     task.title = title;
     task.status = status;
+    task.categoryId = categoryId;
 
     await this.tasksRepository.save(task);
 
