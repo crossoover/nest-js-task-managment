@@ -8,7 +8,7 @@ export class UpdateTaskDto {
 
   @IsNotEmpty()
   description: string;
-  
+
   @IsNotEmpty()
   status: TasksStatus;
 }

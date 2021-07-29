@@ -1,22 +1,21 @@
 /* eslint-disable prettier/prettier */
-import { Exclude } from 'class-transformer';
-import { User } from 'src/auth/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { TasksStatus } from './task-status.enum';
+import { User } from 'src/auth/user.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity()
-export class Task {
+export class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  title: string;
+  name: string;
 
   @Column()
-  description: string;
+  color: string;
 
   @Column()
-  status: TasksStatus;
+  base64Image: string;
 
   @ManyToOne((_type) => User, (user) => user.tasks, { eager: false })
   @Exclude({ toPlainOnly: true })

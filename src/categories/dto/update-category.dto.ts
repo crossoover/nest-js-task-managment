@@ -1,9 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { IsNotEmpty } from 'class-validator';
-export class CreateTaskDto {
+export class UpdateCategoryDto {
   @IsNotEmpty()
-  title: string;
+  name: string;
 
   @IsNotEmpty()
-  description: string;
+  color: string;
+
+  @IsNotEmpty()
+  base64Image: string;
 }
